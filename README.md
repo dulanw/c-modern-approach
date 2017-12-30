@@ -1,1 +1,1 @@
-# c-modern-approach
+# Solutions for "C PROGRAMMING A MODERN APPROACH 2ND-EDITION BY K.N.KING"
