@@ -8,6 +8,8 @@ int main(void)
     printf("Enter a fraction: ");
     scanf("%d/%d", &num1, &num2);
 
+    //this bit here is not really needed, realised it when i was going over it later on,
+    //it doesn't matter which number is larger, but i just left it here, you can just have n = num2, m = num1
     int n, m;
     if(num1 < num2)
     {
