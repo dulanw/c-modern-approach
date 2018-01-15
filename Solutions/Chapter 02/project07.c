@@ -14,14 +14,14 @@ int main(void)
     amount = amount - (tens*10);
 
     fives = amount/5;
-    amount = amount - (fives*20);
+    amount = amount - (fives*5);
 
-    ones = amount/1;
+    ones = amount;
 
-    printf("$20 bills: %d\n",twenties);
-    printf("$10 bills: %d\n",tens);
-    printf(" $5 bills: %d\n",fives);
-    printf(" $1 bills: %d\n",ones);
+    printf("$20 bills: %d\n", twenties);
+    printf("$10 bills: %d\n", tens);
+    printf(" $5 bills: %d\n", fives);
+    printf(" $1 bills: %d\n", ones);
 
     return 0;
 }
