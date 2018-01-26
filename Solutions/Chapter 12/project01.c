@@ -1,4 +1,4 @@
-#include <stdio>
+#include <stdio.h>
 
 #define MAX_LENGTH 99
 
@@ -17,8 +17,11 @@ int main()
     }
 
     printf(" Reversal is: ");
-    for (; index >= &message; index--)
+    while (index > &message)
+    {
+        index--;
         putchar(*index);
+    }
 
     putchar('\n');
 

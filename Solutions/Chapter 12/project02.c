@@ -1,5 +1,5 @@
-#include <stdio>
-#include <stdbool>
+#include <stdio.h>
+#include <stdbool.h>
 
 #define MAX_LENGTH 100
 
@@ -25,12 +25,14 @@ int main()
     bool palindrome = true;
     while (index > first)
     {
+        //doing this first because index is 1 ahead of the actual index of the last entered
+        //since its always increamented
+        --index;
         if(*index != *first)
         {
             palindrome = false;
             break;
         }
-        --index;
         ++first;
     }
 

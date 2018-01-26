@@ -2,17 +2,17 @@
 
 #define N 10
 
-void max_min(int a[], int n, int *max, int *min);
+void max_min(int a[], int *max, int *min);
 
 int main()
 {
     int b[N], i, big, small;
 
     printf("Enter %d numbers: ", N);
-    for (i = 0, i < N, i++)
+    for (i = 0; i < N; i++)
         scanf("%d", &b[i]);
 
-    max_min(b, N, &big, &small);
+    max_min(b, &big, &small);
 
     printf("Largest: %d\n", big);
     printf("Smallest: %d\n", small);
@@ -20,17 +20,16 @@ int main()
     return 0;
 }
 
-void max_min(int a[], int n, int *max, int *min)
+void max_min(int a[], int *max, int *min)
 {
-    int i;
-
+    int * current;
     *max = *min = a[0];
 
-    for (i = 1; i < n; i++)
+    for (current = &a[1]; current < &a[N]; current++)
     {
-        if (a[i] > *max)
-            *max = a[i];
-        else if (a[i] < *min)
-            *min = a[i];
+        if (*current > *max)
+            *max = *current;
+        else if (*current < *min)
+            *min = *current;
     }
 }
