@@ -1,5 +1,11 @@
 #include <stdio.h>
 #include <ctype.h>
+#include <string.h>
+
+#define MAX_LEN 20
+
+int compute_scrabble_value(const char * word);
+int read_line(char str[], int n);
 
 int main(void)
 {
@@ -10,16 +16,29 @@ int main(void)
     // short store 2 bytes or 16 bits.
     // long store 4 bytes as well.
 
+    char word[MAX_LEN + 1];
+
+    printf("Enter a word: ");
+    read_line(word, MAX_LEN);
+
+    printf("Scrabble value: %d\n", compute_scrabble_value(word));
+
+
+    return 0;
+}
+
+int compute_scrabble_value(const char * word)
+{
     char userInput;
     int points = 0;
 
-    printf("Enter a word: ");
 
-
-    do
+    //this can be done with while ((userInput = toupper(*word++)) != '\n')
+    //but this was is a bit clearer what is happening.
+    while (*word != '\0')
     {
         //get char and conert to upper in one line.
-        userInput =  toupper(getchar());
+        userInput =  toupper(*word++);
 
         //check if the character input int is less than or equal to the character value of 9
         //so the userinput is between 0-9 or its a - or random symbol then print it out
@@ -27,7 +46,7 @@ int main(void)
         //ASCII Codes table found here https://ascii.cl/ and http://en.cppreference.com/w/cpp/language/ascii
         //http://asciivalue.com/ was also helpful
         //character values for AEILNORSTU RSTU grouped together last
-        //i could have also just done userinput == 'char' but already did it this way.
+        //i could have also just done userinput == 'char' (i.e userinput = 'A') but already did it this way.
         if (userInput == 65 ||  userInput == 69 || userInput == 73 || userInput == 76 ||
         userInput == 78 || userInput == 79 || (userInput >= 82 && userInput <= 85))
             ++points;
@@ -49,10 +68,24 @@ int main(void)
         //QZ
         else if (userInput == 81 || userInput == 90)
             points += 10;
-    } while (userInput != '\n');
+    }
 
-    printf("Scrabble value: %d", points);
+    return points;
+}
 
+//return the number of characters read including the null character
+int read_line(char str[], int n)
+{
+    int ch, i = 0;
 
-    return 0;
+    while ((ch = getchar()) != '\n')
+    {
+        if (i < n)
+        {
+            str[i++] = ch;
+        }
+    }
+
+    str[i] = '\0';
+    return i;
 }

@@ -1,15 +1,13 @@
 #include <stdio.h>
 #include <stdbool.h>
+#include <ctype.h>
 
 #define MAX_LENGTH 100
 
 int main()
 {
     printf("Enter a message: ");
-    char message[MAX_LENGTH];
-    int *index = &message;
-    int *first = &message;
-
+    char message[MAX_LENGTH], *index = &message[0], *first = &message[0];
     char input;
 
     while ((input = getchar()) != '\n' && index < &message[MAX_LENGTH])
