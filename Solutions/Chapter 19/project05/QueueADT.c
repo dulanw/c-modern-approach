@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "StackADT.h"
+#include "QueueADT.h"
 
-const int QUEUE_SIZE 20;
+#define QUEUE_SIZE 5
 
 struct queue_type
 {
@@ -16,14 +16,26 @@ static void terminate(const char * message)
     exit(EXIT_FAILURE);
 }
 
+static int get_next_pos(int current)
+{
+    //next position to add the new item.
+    int next_pos = current + 1;
+
+    //check if last position, if its then circle around to the first position
+    if (next_pos >= QUEUE_SIZE)
+        next_pos = 0;
+
+    return next_pos;
+}
+
 Queue create()
 {
     Queue q = malloc(sizeof(*q));
     if (!q)
         terminate("Could not allocate memory for Stack\n");
     //-1 is used so to know when there are no items in the array.
-    q->first = -1;
-    q->last = -1;
+    q->first_pos = -1;
+    q->last_pos = -1;
     return q;
 }
 
@@ -61,7 +73,7 @@ void push(Queue q, Item i)
         //setting the first pos to 0 if this is the first time an item is added
         if (q->first_pos == -1)
         {
-            first_pos = 0;
+            q->first_pos = 0;
         }
 
         q->Content[next_pos] = i;
@@ -91,18 +103,6 @@ Item pop(Queue q)
     }
 }
 
-static int get_next_pos(int current)
-{
-    //next position to add the new item.
-    int next_pos = current + 1;
-
-    //check if last position, if its then circle around to the first position
-    if (next_pos >= QUEUE_SIZE)
-        next_pos = 0;
-
-    return next_pos;
-}
-
 Item get_first(Queue q)
 {
     return q->Content[q->first_pos];
@@ -111,4 +111,19 @@ Item get_first(Queue q)
 Item get_last(Queue q)
 {
     return q->Content[q->last_pos];
+}
+
+void print(Queue q)
+{
+    if (is_empty(q))
+        return;
+
+    int start = q->first_pos, end =  q->last_pos;
+    for (;;)
+    {
+        printf("%d at position %d\n", q->Content[start], start);
+        if (start == end)
+            return;
+        start = get_next_pos(start);
+    }
 }

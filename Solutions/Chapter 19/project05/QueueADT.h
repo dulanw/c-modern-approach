@@ -1,5 +1,5 @@
-#ifndef STACKADT_H
-#define STACKADT_H
+#ifndef QUEUEADT_H
+#define QUEUEADT_H
 
 #include <stdbool.h>
 
@@ -15,5 +15,6 @@ void push(Queue s, Item q);
 Item pop(Queue q);
 Item get_first(Queue q);
 Item get_last(Queue q);
+void print(Queue q);
 
 #endif
