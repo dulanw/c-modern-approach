@@ -30,19 +30,14 @@ int main()
         else if (input == '}' || input == ')')
         {
             char popped = stack_pop();
+            printf("popped: %c\n", popped);
+            printf("input: %c\n", input);
             if ((input == '}' && popped != '{') || (input == ')' && popped != '('))
             {
                 printf("parentheses/braches are NOT nested properly\n");
                 exit(EXIT_FAILURE);
             }
         }
-        else
-        {
-            printf("Invalid Inputs\n");
-            exit(EXIT_FAILURE);
-        }
-
-
     } while (input != '\n');
 
 
